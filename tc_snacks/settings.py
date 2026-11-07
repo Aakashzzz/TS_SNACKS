@@ -23,14 +23,10 @@ if not SECRET_KEY:
     SECRET_KEY = "django-insecure-temporary-vercel-key-change-this-later-123456789"
 DEBUG = os.getenv("DJANGO_DEBUG", "True").lower() == "true"
 
-ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.getenv(
-        "DJANGO_ALLOWED_HOSTS",
-        "localhost,127.0.0.1"
-    ).split(",")
-    if host.strip()
-]
+ALLOWED_HOSTS = os.getenv(
+    "DJANGO_ALLOWED_HOSTS",
+    "localhost,127.0.0.1,ts-snacks-dmdj.vercel.app"
+).split(",")
 
 
 # Application definition
