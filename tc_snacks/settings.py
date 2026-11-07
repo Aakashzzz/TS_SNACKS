@@ -20,8 +20,7 @@ load_dotenv(ENV_FILE, override=True)
 SECRET_KEY = os.getenv('django-insecure-@4worjqu+d#0p8fsciv#hfouuj_!4zyf979@u-i$q-#t0ypfq*') or dotenv_values(ENV_FILE).get("DJANGO_SECRET_KEY")
 
 if not SECRET_KEY:
-    raise ValueError("DJANGO_SECRET_KEY is missing from .env")
-
+    SECRET_KEY = "django-insecure-temporary-vercel-key-change-this-later-123456789"
 DEBUG = os.getenv("DJANGO_DEBUG", "True").lower() == "true"
 
 ALLOWED_HOSTS = [
