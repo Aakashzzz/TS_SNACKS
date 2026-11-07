@@ -1,0 +1,53 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff8ef">
+    <meta name="description" content="Discover traditional savouries, crispy chips and delicious biscuits at TS Snacks.">
+    <title>{% block title %}TS Snacks | A Taste of Tradition{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body>
+    <div class="announcement">
+        A LITTLE CRUNCH, A LOT OF HAPPINESS ✨
+    </div>
+
+    <header class="site-header">
+        <a class="brand" href="{% url 'shop:home' %}">
+            <span class="brand-mark">TS</span>
+            <span>TS SNACKS<small>TRADITION IN EVERY BITE</small></span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="{% url 'shop:home' %}">Home</a>
+            <a href="{% url 'shop:products' %}">Our Snacks</a>
+            <a href="{% url 'shop:contact' %}">Contact</a>
+        </nav>
+
+        <a class="nav-cta" href="{% url 'shop:products' %}">
+            Explore Snacks <span>↗</span>
+        </a>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand footer-brand" href="{% url 'shop:home' %}">
+            <span class="brand-mark">TS</span>
+            <span>TS SNACKS<small>TRADITION IN EVERY BITE</small></span>
+        </a>
+        <p>Made for your snack cravings.</p>
+        <p>© {% now "Y" %} TS Snacks. All rights reserved.</p>
+        <a href="https://www.instagram.com/ts_snacks_official/"
+           target="_blank" rel="noopener noreferrer">
+            Follow us on Instagram ↗
+        </a>
+    </footer>
+</body>
+</html>

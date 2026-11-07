@@ -1,0 +1,112 @@
+
+{% extends "base.html" %}
+
+{% block title %}Our Snacks | TS Snacks{% endblock %}
+
+{% block content %}
+<section class="catalogue-intro">
+    <span class="eyebrow">THE GOOD STUFF STARTS HERE</span>
+    <h1>Find your kind of <em>crunch.</em></h1>
+    <p>Traditional favourites, crispy bites and sweet little treats.</p>
+</section>
+
+<section class="section catalogue-section">
+    <form method="get" class="catalogue-toolbar">
+        <input type="search" name="q" value="{{ search_query }}"
+               placeholder="Search your favourite snacks..."
+               aria-label="Search products">
+
+        <select name="category" aria-label="Filter by category">
+            <option value="">All categories</option>
+            {% for category in categories %}
+            <option value="{{ category }}"
+                {% if selected_category == category %}selected{% endif %}>
+                {{ category }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <button class="button button-primary" type="submit">Find snacks</button>
+    </form>
+
+    <div class="catalogue-count">
+        <span>Our snack collection</span>
+        <span>{{ products|length }} products</span>
+    </div>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <article class="product-card">
+            <div class="product-image-wrap">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% else %}
+                    <div class="image-placeholder">
+                        <span>TS</span>
+                        <small>SNACKS</small>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="product-info">
+                <span class="product-category">{{ product.category }}</span>
+                <h3>{{ product.name }}</h3>
+                <p class="price">₹{{ product.price_per_kg }}<small> / kg</small></p>
+
+                <div class="quantity-row">
+                    <label for="qty-{{ product.id }}">Quantity (kg)</label>
+                    <input id="qty-{{ product.id }}" type="number"
+                           min="0.25" max="100" step="0.25"
+                           value="1" inputmode="decimal">
+                </div>
+
+                <button class="button button-primary add-to-cart"
+                        type="button"
+                        data-id="{{ product.id }}"
+                        data-name="{{ product.name }}"
+                        data-price="{{ product.price_per_kg }}">
+                    Add to order +
+                </button>
+            </div>
+        </article>
+        {% empty %}
+        <div class="empty-state">
+            <h2>No snacks found</h2>
+            <p>Try another search or select a different category.</p>
+            <a class="text-link" href="{% url 'shop:products' %}">
+                View all products →
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<aside class="cart-panel" id="cart-panel">
+    <div class="cart-heading">
+        <div>
+            <span class="eyebrow">YOUR SELECTION</span>
+            <h2>Your snack order</h2>
+        </div>
+        <button type="button" id="clear-cart" class="clear-button">
+            Clear
+        </button>
+    </div>
+
+    <p id="cart-empty">Your order is empty. Add a few favourites!</p>
+    <div id="cart-items"></div>
+
+    <div class="cart-total">
+        <span>Estimated total</span>
+        <strong id="cart-total">₹0.00</strong>
+    </div>
+    <p class="cart-disclaimer">
+        Prices are per kilogram. Final availability and order details
+        will be confirmed by TS Snacks.
+    </p>
+
+    <button type="button" id="whatsapp-order"
+            class="button button-whatsapp">
+        <span>↗</span> Order through WhatsApp
+    </button>
+</aside>
+{% endblock %}

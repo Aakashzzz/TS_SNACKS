@@ -1,0 +1,62 @@
+
+{% extends "base.html" %}
+
+{% block title %}Contact TS Snacks{% endblock %}
+
+{% block content %}
+<section class="catalogue-intro">
+    <span class="eyebrow">WE'D LOVE TO HEAR FROM YOU</span>
+    <h1>Let's talk <em>snacks.</em></h1>
+    <p>Questions about our products? Contact the TS Snacks team.</p>
+</section>
+
+<section class="section contact-section">
+    <span class="eyebrow">GET IN TOUCH</span>
+    <h2>We're just a message away.</h2>
+
+    <div class="contact-list">
+        <article class="contact-card">
+            <h3>Shop owner</h3>
+            <p>Tamil Selvan M</p>
+        </article>
+
+        <article class="contact-card">
+            <h3>Phone & WhatsApp</h3>
+            <p><a href="https://wa.me/917418350372"
+                  target="_blank" rel="noopener noreferrer">
+                +91 74183 50372 — Message us ↗
+            </a></p>
+        </article>
+
+        <article class="contact-card">
+            <h3>Email</h3>
+            <p><a href="mailto:tssnacksofficial@gmail.com">
+                tssnacksofficial@gmail.com
+            </a></p>
+        </article>
+
+        <article class="contact-card">
+            <h3>Instagram</h3>
+            <p><a href="https://www.instagram.com/ts_snacks_official/"
+                  target="_blank" rel="noopener noreferrer">
+                @ts_snacks_official ↗
+            </a></p>
+        </article>
+
+        <article class="contact-card">
+            <h3>Visit our shop</h3>
+            <p>
+                4/46, Sennimalai Palayam, Thekkalur,
+                Avinashi, Tiruppur, Tamil Nadu – 641654
+            </p>
+        </article>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <a class="button button-primary"
+           href="{% url 'shop:products' %}">
+            Browse our snacks ↗
+        </a>
+    </div>
+</section>
+{% endblock %}
